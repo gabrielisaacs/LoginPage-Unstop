@@ -95,8 +95,8 @@ const Login = () => {
           />
         </div>
 
-        {/* Right side - Form */}
-        <div className='w-full max-w-[47.5rem] p-6 lg:p-8 bg-white rounded-2xl shadow-sm'>
+        {/* Form container */}
+        <div className='w-full max-w-[47.5rem] p-6 lg:p-8 bg-white rounded-2xl shadow-sm border'>
           <div className="flex flex-col gap-4">
             <h1 className='text-2xl lg:text-[2.25rem] font-medium leading-tight mb-4'>
               Welcome to <br />
@@ -108,12 +108,12 @@ const Login = () => {
             {/* Social Login Buttons */}
             <div className='space-y-4'>
               <button className="w-full flex items-center justify-center gap-4 p-4 lg:p-6 bg-white border rounded-lg shadow-md">
-                <img src="./src/assets/google.svg" alt="google logo" />
+                <img src="../src/assets/google.svg" alt="google logo" />
                 <span className='text-base font-medium'>Login with Google</span>
               </button>
 
               <button className="w-full flex items-center justify-center gap-4 p-4 lg:p-6 bg-white border rounded-lg shadow-md">
-                <img src="./src/assets/facebook.svg" alt="facebook logo" />
+                <img src="../src/assets/facebook.svg" alt="facebook logo" />
                 <span className='text-base font-medium'>Login with Facebook</span>
               </button>
             </div>
@@ -130,7 +130,7 @@ const Login = () => {
               {/* Username Input */}
               <div className="relative">
                 <div className="flex items-center bg-ash rounded-lg p-4">
-                  <img src="./src/assets/account_circle.svg" alt="" className="mr-4" />
+                  <img src="../src/assets/account_circle.svg" alt="" className="mr-4" />
                   <div className='flex-1'>
                     <label className='text-xs'>Username</label>
                     <input
@@ -151,7 +151,7 @@ const Login = () => {
               {/* Email Input */}
               <div className="relative">
                 <div className="flex items-center bg-ash rounded-lg p-4">
-                  <img src="./src/assets/mail.svg" alt="" className="mr-4" />
+                  <img src="../src/assets/mail.svg" alt="" className="mr-4" />
                   <div className='flex-1'>
                     <label className='text-xs'>Email</label>
                     <input
@@ -172,7 +172,7 @@ const Login = () => {
               {/* Password Input */}
               <div className="relative">
                 <div className="flex items-center bg-ash rounded-lg p-4">
-                  <img src="./src/assets/key.svg" alt="" className="mr-4" />
+                  <img src="../src/assets/key.svg" alt="" className="mr-4" />
                   <div className='flex-1'>
                     <label className='text-xs'>Password</label>
                     <input
@@ -185,7 +185,7 @@ const Login = () => {
                     />
                   </div>
                   <button type="button" className='ml-2'>
-                    <img src="./src/assets/account_circle.svg" alt="toggle password" />
+                    <img src="../src/assets/visibility.svg" alt="toggle password" />
                   </button>
                 </div>
                 {errors.password && (
@@ -201,7 +201,7 @@ const Login = () => {
                     name="rememberMe"
                     checked={formData.rememberMe}
                     onChange={handleInputChange}
-                    className="h-5 w-5 rounded bg-ash"
+                    className="h-5 w-5 rounded-md bg-ash border opacity-30 checked:opacity-100"
                   />
                   <label>Remember me</label>
                 </div>
