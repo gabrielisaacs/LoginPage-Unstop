@@ -10,11 +10,9 @@ const Login = () => {
     password: '',
     rememberMe: false
   });
-
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
-  // Check if user is already logged in
   useEffect(() => {
     const userData = localStorage.getItem('userData');
     if (userData) {
@@ -22,23 +20,18 @@ const Login = () => {
     }
   }, [navigate]);
 
-  // field Validations
   const validateForm = () => {
     const newErrors = {};
-
     if (formData.username !== 'emilys') {
       newErrors.username = 'Username must be "emilys"';
     }
-
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email)) {
       newErrors.email = 'Please enter a valid email address';
     }
-
     if (formData.password.length < 8) {
       newErrors.password = 'Password must be at least 8 characters long';
     }
-
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -51,14 +44,8 @@ const Login = () => {
     }));
   };
 
-  const togglePasswordVisibility = (e) => {
-    e.preventDefault();
-    setShowPassword(!showPassword);
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (!validateForm()) return;
 
     setIsLoading(true);
@@ -75,7 +62,6 @@ const Login = () => {
       });
 
       const data = await response.json();
-
       if (response.ok) {
         localStorage.setItem('userData', JSON.stringify(data));
         navigate('/home');
@@ -92,48 +78,36 @@ const Login = () => {
   return (
     <div className='min-h-screen w-full p-4 md:p-8 lg:p-16'>
       <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-8 lg:gap-16 items-center">
-        {/* Left side - Image */}
         <div className='hidden md:block'>
-          <img
-            src="../src/assets/Illustration.png"
-            alt="login illustration"
-            className='w-full max-w-[33.75rem] h-auto'
-          />
+          <img src="../src/assets/Illustration.png" alt="login illustration" className='w-full max-w-[33.75rem] h-auto' />
         </div>
 
-        {/* Form container */}
         <div className='w-full max-w-[47.5rem] p-6 lg:p-8 bg-white rounded-2xl shadow-sm border'>
           <div className="flex flex-col gap-4">
             <h1 className='text-2xl lg:text-[2.25rem] font-medium leading-tight mb-4'>
               Welcome to <br />
-              <span className='text-purple text-3xl lg:text-[2.875rem] font-black'>
-                Unstop
-              </span>
+              <span className='text-purple text-3xl lg:text-[2.875rem] font-black'>Unstop</span>
             </h1>
 
-            {/* Social Login Buttons */}
             <div className='space-y-4'>
-              <button className="w-full flex items-center justify-center gap-4 p-4 lg:p-6 bg-white border rounded-lg shadow-md">
+              <button type="button" className="w-full flex items-center justify-center gap-4 p-4 lg:p-6 bg-white border rounded-lg shadow-md">
                 <img src="../src/assets/google.svg" alt="google logo" />
                 <span className='text-base font-medium'>Login with Google</span>
               </button>
 
-              <button className="w-full flex items-center justify-center gap-4 p-4 lg:p-6 bg-white border rounded-lg shadow-md">
+              <button type="button" className="w-full flex items-center justify-center gap-4 p-4 lg:p-6 bg-white border rounded-lg shadow-md">
                 <img src="../src/assets/facebook.svg" alt="facebook logo" />
                 <span className='text-base font-medium'>Login with Facebook</span>
               </button>
             </div>
 
-            {/* Divider */}
             <div className='flex items-center gap-4 my-6'>
               <div className="flex-1 h-px bg-[#bfbfbf]"></div>
               <span>OR</span>
               <div className="flex-1 h-px bg-[#bfbfbf]"></div>
             </div>
 
-            {/* Form */}
             <form onSubmit={handleSubmit} className='space-y-4'>
-              {/* Username Input */}
               <div className="relative">
                 <div className="flex items-center bg-ash rounded-lg p-4">
                   <img src="../src/assets/account_circle.svg" alt="" className="mr-4" />
@@ -149,12 +123,9 @@ const Login = () => {
                     />
                   </div>
                 </div>
-                {errors.username && (
-                  <p className="text-red-500 text-sm mt-1">{errors.username}</p>
-                )}
+                {errors.username && <p className="text-red-500 text-sm mt-1">{errors.username}</p>}
               </div>
 
-              {/* Email Input */}
               <div className="relative">
                 <div className="flex items-center bg-ash rounded-lg p-4">
                   <img src="../src/assets/mail.svg" alt="" className="mr-4" />
@@ -170,12 +141,9 @@ const Login = () => {
                     />
                   </div>
                 </div>
-                {errors.email && (
-                  <p className="text-red-500 text-sm mt-1">{errors.email}</p>
-                )}
+                {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
               </div>
 
-              {/* Password Input */}
               <div className="relative">
                 <div className="flex items-center bg-ash rounded-lg p-4">
                   <img src="../src/assets/key.svg" alt="" className="mr-4" />
@@ -192,7 +160,7 @@ const Login = () => {
                   </div>
                   <button
                     type="button"
-                    onClick={togglePasswordVisibility}
+                    onClick={() => setShowPassword(!showPassword)}
                     className='ml-2 focus:outline-none'
                   >
                     <img
@@ -202,12 +170,9 @@ const Login = () => {
                     />
                   </button>
                 </div>
-                {errors.password && (
-                  <p className="text-red-500 text-sm mt-1">{errors.password}</p>
-                )}
+                {errors.password && <p className="text-red-500 text-sm mt-1">{errors.password}</p>}
               </div>
 
-              {/* Remember Me & Forgot Password */}
               <div className="flex items-center justify-between my-6">
                 <div className="flex items-center gap-2">
                   <input
@@ -219,12 +184,9 @@ const Login = () => {
                   />
                   <label>Remember me</label>
                 </div>
-                <a href="#" className="text-purple hover:underline">
-                  Forgot Password?
-                </a>
+                <a href="#" className="text-purple hover:underline">Forgot Password?</a>
               </div>
 
-              {/* Submit Button */}
               <button
                 type="submit"
                 disabled={isLoading}
@@ -233,17 +195,12 @@ const Login = () => {
                 {isLoading ? 'Logging in...' : 'Login'}
               </button>
 
-              {errors.submit && (
-                <p className="text-red-500 text-center mt-2">{errors.submit}</p>
-              )}
+              {errors.submit && <p className="text-red-500 text-center mt-2">{errors.submit}</p>}
             </form>
 
-            {/* Register Link */}
             <p className='text-center mt-6'>
               Don't have an account?{' '}
-              <a href="#" className="text-purple hover:underline">
-                Register
-              </a>
+              <a href="#" className="text-purple hover:underline">Register</a>
             </p>
           </div>
         </div>
