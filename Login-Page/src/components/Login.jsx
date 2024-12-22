@@ -91,7 +91,7 @@ const Login = () => {
 
         <div className='w-full max-w-[47.5rem] p-6 lg:p-8 bg-white rounded-2xl shadow-sm border'>
           <div className="flex flex-col gap-4">
-            <h1 className='text-2xl lg:text-[2.25rem] font-medium leading-tight mb-4'>
+            <h1 className='text-2xl lg:text-[2.25rem] font-medium leading-relaxed mb-4'>
               Welcome to <br />
               <span className='text-purple text-3xl lg:text-[2.875rem] font-black'>Unstop</span>
             </h1>
