@@ -49,16 +49,21 @@ const Login = () => {
     if (!validateForm()) return;
 
     setIsLoading(true);
+
+    const payload = {
+      username: formData.username,
+      password: formData.password,
+      email: formData.email,
+      expiresInMins: 30
+    };
+
+    console.log('Submitting payload:', payload);
+
     try {
       const response = await fetch('https://dummyjson.com/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          username: formData.username,
-          password: formData.password,
-          email: formData.email,
-          expiresInMins: 30
-        })
+        body: JSON.stringify(payload)
       });
 
       const data = await response.json();
@@ -66,9 +71,11 @@ const Login = () => {
         localStorage.setItem('userData', JSON.stringify(data));
         navigate('/home');
       } else {
+        console.error('Login failed:', data);
         setErrors({ submit: 'Login failed. Please check your credentials.' });
       }
     } catch (error) {
+      console.error('An error occurred:', error);
       setErrors({ submit: 'An error occurred. Please try again.' });
     } finally {
       setIsLoading(false);

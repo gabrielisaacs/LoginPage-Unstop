@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Login from './components/Login';
-import LoggedIn from './components/LoggedIn';
+import Home from './components/Home';
 
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {
@@ -20,12 +20,10 @@ const App = () => {
         <Route
           path="/home"
           element={
-            // <ProtectedRoute>
-            <LoggedIn />
-            // </ProtectedRoute>
+            <Home />
           }
         />
-        <Route path="/" element={<Navigate to="/auth/login" />} />
+        <Route path="/" element={<Navigate to="/home" />} />
       </Routes>
     </Router>
   );
