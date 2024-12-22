@@ -20,9 +20,9 @@ const App = () => {
         <Route
           path="/home"
           element={
-            <ProtectedRoute>
-              <LoggedIn />
-            </ProtectedRoute>
+            // <ProtectedRoute>
+            <LoggedIn />
+            // </ProtectedRoute>
           }
         />
         <Route path="/" element={<Navigate to="/auth/login" />} />
