@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     username: '',
     email: '',
@@ -48,6 +49,11 @@ const Login = () => {
       ...prev,
       [name]: type === 'checkbox' ? checked : value
     }));
+  };
+
+  const togglePasswordVisibility = (e) => {
+    e.preventDefault();
+    setShowPassword(!showPassword);
   };
 
   const handleSubmit = async (e) => {
@@ -176,7 +182,7 @@ const Login = () => {
                   <div className='flex-1'>
                     <label className='text-xs'>Password</label>
                     <input
-                      type="password"
+                      type={showPassword ? "text" : "password"}
                       name="password"
                       value={formData.password}
                       onChange={handleInputChange}
@@ -184,8 +190,16 @@ const Login = () => {
                       className='w-full bg-transparent focus:outline-none text-base font-bold placeholder-black'
                     />
                   </div>
-                  <button type="button" className='ml-2'>
-                    <img src="../src/assets/visibility.svg" alt="toggle password" />
+                  <button
+                    type="button"
+                    onClick={togglePasswordVisibility}
+                    className='ml-2 focus:outline-none'
+                  >
+                    <img
+                      src={showPassword ? "../src/assets/visibility-off.svg" : "../src/assets/visibility.svg"}
+                      alt={showPassword ? "hide password" : "show password"}
+                      className="w-6 h-6"
+                    />
                   </button>
                 </div>
                 {errors.password && (
